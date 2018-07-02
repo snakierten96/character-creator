@@ -1,0 +1,19 @@
+<mat-toolbar class="topbar" [class.scrolling]="scrolling">
+  <button mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+  {{ title }}
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link *ngFor="let item of navItems$ | async"
+      [routerLink]="item.path"
+      [routerLinkActiveOptions]="{ exact: item.name === 'Home' }"
+      routerLinkActive #rla="routerLinkActive"
+      [active]="rla.isActive">
+      {{ item.name }}
+    </a>
+  </nav>
+</mat-toolbar>
+<div class="container content main mat-typography">
+  <router-outlet></router-outlet>
+</div>
+<mat-progress-bar class="fixedtop inkline"></mat-progress-bar>
